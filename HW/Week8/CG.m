@@ -69,11 +69,12 @@ function x_end = PCG(A, b, M)
     r = b;
     res = r' * r;
     while res > 1e-13
+        z = M^-1*r;
         if k == 0
-            p = M^-1 * r;
+            p = z;
         else
-            gam = (-p'*A*r) / (p'*A*p);
-            p = M^-1 * r + gam*p;
+            gam = (-p'*z) / (p'*A*p);
+            p = z + gam*p;
         end
 
         alpha = (p' * r) / (p' * A * p);
