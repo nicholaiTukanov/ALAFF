@@ -1,0 +1,22 @@
+Regarding number of iterations and time taken to converge:
+
+Method of Steepest Descent - Took 6700 iterations and ~10 sec 
+Method of Steepest Descent with ichol - Took 603 iterations and ~1 sec
+Conjugate Gradient - Took 98 iteration and ~0.5 sec
+Conjugate Gradient with ichol - Took 43 iteration and ~0.07 sec
+
+(These numbers are without any fancy tricks when computing ichol. When using
+fancy tricks, I can get each method that uses preconditioning down to 1 iteration.)
+
+Observations:
+
+- SD without ichol takes longer than with ichol.
+- CG is much faster than SD.
+- Similar to SD with ichol, CG with ichol is faster than CG.
+- Decreasing the tolerance in the struct makes it so that PCG converges faster.
+
+End comments:
+
+- From the experiments, it seems clear that having search directions that are 
+linearly independent (CG) is better.
+- It is also clear that using a preconditioner, decreases the number of iterations.
