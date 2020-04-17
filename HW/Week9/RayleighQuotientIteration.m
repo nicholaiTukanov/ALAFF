@@ -6,6 +6,9 @@ function [ lambda0, v ] = RayleighQuotientIteration( A, x, maxits, illustrate, d
     % If illustrate == 2, then graphs that illustrate the convergence are generated.
         
     [ m, n ] = size( A );
+
+    [L, U, P] = lu(A);
+
         
     % If we illustrate the algorithm, create an array in which to store the 
     % approximations for the eigenvalues
@@ -22,11 +25,13 @@ function [ lambda0, v ] = RayleighQuotientIteration( A, x, maxits, illustrate, d
          
         vold = v;
         
-        v = A * v;
+        res = v'*v
+        rho = (v' * A * v) / (v'*v);
+        v = (A - rho*eye(size(A))) \ v
         v = v / norm( v );
             
         % Update estimate of lambda
-        lambda0 = v' * A * v;
+        lambda0 = (v' * A * v);
             
         if illustrate ~= 0
             % Extract the approximations to the eigenvalues for later plotting
@@ -57,5 +62,4 @@ function [ lambda0, v ] = RayleighQuotientIteration( A, x, maxits, illustrate, d
         ReportConvergence( lambdas(1,1:k), max( eig( A ) ), "\lambda_0" );
     end
     
-    end
-    
+end

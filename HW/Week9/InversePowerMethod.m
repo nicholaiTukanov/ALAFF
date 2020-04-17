@@ -6,6 +6,9 @@ function [ lambda0, v ] = InversePowerMethod( A, x, maxits, illustrate, delay )
     % If illustrate == 2, then graphs that illustrate the convergence are generated.
         
     [ m, n ] = size( A );
+
+    [L, U, P] = lu(A);
+
         
     % If we illustrate the algorithm, create an array in which to store the 
     % approximations for the eigenvalues
@@ -22,11 +25,12 @@ function [ lambda0, v ] = InversePowerMethod( A, x, maxits, illustrate, delay )
          
         vold = v;
         
-        v = A * v;
+        v = (U \ (L \ (P * v)));
+        % v = A \ v
         v = v / norm( v );
             
         % Update estimate of lambda
-        lambda0 = v' * A * v;
+        lambda0 = (v' * A * v);
             
         if illustrate ~= 0
             % Extract the approximations to the eigenvalues for later plotting

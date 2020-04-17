@@ -44,30 +44,34 @@ if (1)
     % Set the maximum number of iterations to be performed
     maxiters = 30;
     
+    tic
     [ lambda_0, v0 ] = PowerMethod( A, x, maxiters, 2, delay );
+    toc
     
     % Report final approximation to lambda_0
     disp( 'approximation to lambda_0 = ' );
     lambda_0
 end
 
-if (0)
+if (1)
     % Execute the Inverse Power Method 
     disp( 'Inverse Power Method' );
     
     % Set the maximum number of iterations to be performed
     maxiters = 30;
     
+    tic
     [ lambda_m_min_1, v_m_min_1 ] = ...
         InversePowerMethod( A, x, maxiters, illustrate, ...
         delay );
+    toc
     
     % Report final approximation to lambda_1
     disp( 'approximation to lambda_{m-1} = ' );
     v_m_min_1' * A * v_m_min_1
 end
 
-if (0)
+if (1)
     % Execute the Shifted Inverse Power Method 
     disp( 'Shifted Inverse Power Method' );
     
@@ -76,25 +80,29 @@ if (0)
     
     rho = 0.95;
     
+    tic
     [ lambda_m_min_1, v_m_min_1 ] = ...
         ShiftedInversePowerMethod( A, x, rho, ...
           maxiters, illustrate, delay );
+    toc
     
     % Report final approximation to lambda_1
     disp( 'approximation to lambda_{m-1} = ' );
     v_m_min_1' * A * v_m_min_1
 end
 
-if (0)
+if (1)
     % Execute the Rayleigh Quotient Iteration
     disp( 'Rayleigh Quotient Iteration' );
     
     % Set the maximum number of iterations to be performed
     maxiters = 30;
     
+    tic
     [ lambda_m_min_1, v_m_min_1 ] = ...
         RayleighQuotientIteration( A, x, maxiters, illustrate, ...
         delay );
+    toc
     
     % Report final approximation to lambda_1
     disp( 'approximation to lambda_{m-1} = ' );

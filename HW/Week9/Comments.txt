@@ -1,0 +1,6 @@
+Observations:
+
+- InversePowerMethod and ShiftedInversePowerMethod both converge on lambda_m-1
+- However, Rayleigh converges on to lambda_m-2
+- Rayleigh also converges faster
+- Each method is just a slight variation from the last
